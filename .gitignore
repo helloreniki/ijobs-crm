@@ -11,5 +11,10 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/.idea
-/.vscode
+
+/public/css
+/public/js
+/public/mix-manifest.json
+/public/assets/img
+
+.DS_Store
