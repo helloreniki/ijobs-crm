@@ -8,6 +8,7 @@
   <title>Document</title>
 </head>
 <body>
-  <h1 class="text-4xl font-bold">Hello</h1>
+  <h1 class="text-red-500">Layout</h1>
+  {{ $slot }}
 </body>
 </html>
