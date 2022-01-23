@@ -17,7 +17,7 @@ class CreateCommsTable extends Migration
             $table->id();
             $table->foreignId('employee_id');
             $table->text('content');
-            $table->string('comm_mode')->nullable(); //phone, email, video call
+            $table->string('type')->nullable(); // phone, email, video call
             $table->date('date');
             $table->date('date_of_next_contact')->nullable();
             $table->timestamps();
