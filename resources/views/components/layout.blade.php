@@ -20,8 +20,9 @@
     </div>
   </nav>
   <div class="flex px-6 py-3 my-8">
-    <nav class="w-1/5 space-y-2">
-      <div>Companies</div>
+    <nav class="w-1/5 flex flex-col space-y-2">
+      <a href="{{ route('company.index') }}">Companies</a>
+      <a href="{{ route('employee.index') }}">Contacts</a>
       <div>Comms</div>
     </nav>
     <div class="w-full">
