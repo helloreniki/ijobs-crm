@@ -8,7 +8,25 @@
   <title>Document</title>
 </head>
 <body>
-  <h1 class="text-red-500">Layout</h1>
-  {{ $slot }}
+  <nav class="flex justify-between bg-gray-200 px-6 py-3">
+    <div class="flex space-x-6">
+      <div>Logo</div>
+      <div>Jobs CRM</div>
+      <div>Filters</div>
+      <div>Search</div>
+    </div>
+    <div>
+      My Profile
+    </div>
+  </nav>
+  <div class="flex px-6 py-3 my-8">
+    <nav class="w-1/5 space-y-2">
+      <div>Companies</div>
+      <div>Comms</div>
+    </nav>
+    <div class="w-full">
+      {{ $slot }}
+    </div>
+  </div>
 </body>
 </html>
