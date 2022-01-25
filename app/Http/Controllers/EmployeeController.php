@@ -15,4 +15,11 @@ class EmployeeController extends Controller
             'employees' => $employees,
         ]);
     }
+
+    public function show(Employee $employee)
+    {
+        return view('employee.show', [
+            'employee' => $employee,
+        ]);
+    }
 }

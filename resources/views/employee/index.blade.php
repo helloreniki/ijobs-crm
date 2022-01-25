@@ -14,8 +14,10 @@
       @foreach ($employees as $employee)
       <tr class="text-xs">
         <td class="py-1 px-2">
-          <div class="text-sm font-semibold mb-1">{{ $employee->name }}</div>
-          <div class="text-cyan-500">{{ $employee->email }}</div>
+          <a href="{{ route('employee.show', $employee) }}">
+            <div class="text-sm font-semibold mb-1">{{ $employee->name }}</div>
+            <div class="text-cyan-500">{{ $employee->email }}</div>
+          </a>
         </td>
         <td class="font-semibold py-1 px-2">{{ $employee->company->name }}</td>
         <td class="py-1 px-2">{{ $employee->company->country }}</td>

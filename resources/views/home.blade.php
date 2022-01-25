@@ -7,7 +7,7 @@
           <div class="flex justify-between items-center bg-gray-100 px-3 py-1">
             <div class="flex items-center space-x-3">
               <div class="text-md font-semibold uppercase">{{ $comm->employee->company->name }}</div>
-              <div class="text-sm font-semibold">{{ $comm->employee->name }}<span class="text-xs text-gray-700 ml-3">{{ $comm->date }}</span></div>
+              <div class="text-sm font-semibold"><a href="{{ route('employee.show', [$comm->employee]) }}">{{ $comm->employee->name }}</a><span class="text-xs text-gray-700 ml-3">{{ $comm->date }}</span></div>
             </div>
             <div class="text-xs text-gray-500">Edit</div>
           </div>

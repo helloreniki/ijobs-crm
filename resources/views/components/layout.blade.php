@@ -10,8 +10,8 @@
 <body>
   <nav class="flex justify-between bg-gray-200 px-6 py-3">
     <div class="flex space-x-6">
-      <div>Logo</div>
-      <div>Jobs CRM</div>
+      <a href="{{ route('home') }}"><div>Logo</div></a>
+      <a href="{{ route('home') }}"><div>Jobs CRM</div></a>
       <div>Filters</div>
       <div>Search</div>
     </div>
@@ -23,7 +23,7 @@
     <nav class="w-1/5 flex flex-col space-y-2">
       <a href="{{ route('company.index') }}">Companies</a>
       <a href="{{ route('employee.index') }}">Contacts</a>
-      <div>Comms</div>
+      <a href="{{ route('home') }}"><div>Comms</div></a>
     </nav>
     <div class="w-full">
       {{ $slot }}
