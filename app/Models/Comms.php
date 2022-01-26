@@ -10,6 +10,14 @@ class Comms extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'employee_id',
+        'content',
+        'type',
+        'date',
+        'date_of_next_contact'
+    ];
+
     public function employee()
     {
         return $this->belongsTo(Employee::class);
