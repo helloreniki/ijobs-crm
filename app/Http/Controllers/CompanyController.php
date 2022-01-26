@@ -15,4 +15,11 @@ class CompanyController extends Controller
             'companies' => $companies,
         ]);
     }
+
+    public function show(Company $company)
+    {
+        return view('company.show', [
+            'company' => $company
+        ]);
+    }
 }

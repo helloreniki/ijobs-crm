@@ -18,5 +18,6 @@ use App\Http\Controllers\EmployeeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/companies', [CompanyController::class, 'index'])->name('company.index');
+Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('company.show');
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employees/{employee}/comms', [EmployeeController::class, 'show'])->name('employee.show');
