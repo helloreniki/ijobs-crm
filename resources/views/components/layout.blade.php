@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
       <a href="{{ route('employee.index') }}">Contacts</a>
       <a href="{{ route('home') }}"><div>Comms</div></a>
     </nav>
-    <div class="w-full">
+    <div class="">
       {{ $slot }}
     </div>
   </div>
