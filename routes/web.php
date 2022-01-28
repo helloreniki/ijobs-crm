@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 
@@ -17,6 +18,10 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/comms/create', [CommsController::class, 'create'])->name('comm.create');
+Route::post('/comms', [CommsController::class, 'store'])->name('comm.store');
+
 Route::get('/companies', [CompanyController::class, 'index'])->name('company.index');
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('company.show');
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
