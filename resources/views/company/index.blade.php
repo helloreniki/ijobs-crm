@@ -27,9 +27,9 @@
         <td class="py-1 px-2 text-center">{{ $company->my_rating }}</td>
         <td class="py-1 px-2">{{ $company->notes }}</td>
         <td class="py-1 px-2 text-cyan-700">
-          <div class="flex space-x-3">
+          <div class="flex space-x-1">
           @foreach ($company->skills as $skill)
-            <div class="">{{ $skill->name }}</div>
+            <div class="mb-8">{{ $skill->name }}</div>
           @endforeach
           </div>
         </td>

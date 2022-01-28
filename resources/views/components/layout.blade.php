@@ -25,7 +25,7 @@
       <a href="{{ route('employee.index') }}">Contacts</a>
       <a href="{{ route('home') }}"><div>Comms</div></a>
     </nav>
-    <div class="">
+    <div class="w-full">
       {{ $slot }}
     </div>
   </div>
