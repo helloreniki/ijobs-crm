@@ -57,9 +57,9 @@
       <div class="mt-1">
         <select name="type" id="type" class="text-gray-500 block w-full rounded-md shadow-md sm:text-sm border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
           <option value="" class="">Choose type of comm</option>
-          <option value="phone">Phone</option>
-          <option value="email" selected>Email</option>
-          <option value="video_call">Video Call</option>
+          <option value="phone" {{ old('type') == 'phone' ? 'selected' : '' }}>Phone</option>
+          <option value="email" {{ old('type') == 'email' ? 'selected' : '' }}>Email</option>
+          <option value="video_call" {{ old('type') == 'video_call' ? 'selected' : '' }}>Video Call</option>
         </select>
       </div>
     </div>
