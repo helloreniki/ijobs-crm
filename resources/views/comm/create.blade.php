@@ -5,7 +5,6 @@
 
     <div>
       <x-form.label for="employee_id" class="tracking-widest">Contact name</x-form.label>
-
       <x-form.select name="employee_id" id="employee_id" empty="Choose your contact">
         @foreach ($employees as $contact)
           <option value="{{ $contact->id }}" {{ old('employee_id') == $contact->id ? 'selected' : '' }}>{{ $contact->name }}</option>
@@ -14,18 +13,9 @@
           <div class="flex-shrink-0 text-sm text-white text-center bg-cyan-500 shadow-md shadow-cyan-500/50 rounded-md px-3 py-2">Add new contact</div>
         </x-slot>
       </x-form.select>
-
-      <x-form.error-message name="employee_id" />
     </div>
 
-    <div class="">
-      <x-form.label for="content">Content:</x-form.label>
-      <div class="mt-1 relative">
-        <x-form.textarea name="content" id="content" placeholder="Content of communication...">{{ old('content') }}</x-form.textarea>
-        <x-form.error-icon name="content"/>
-      </div>
-      <x-form.error-message name="content"/>
-    </div>
+    <x-form.textarea name="content" id="content" placeholder="Content of communication...">{{ old('content') }}</x-form.textarea>
 
     <div>
       <x-form.label for="type">Type of communication:</x-form.label>
@@ -36,15 +26,9 @@
       </x-form.select>
     </div>
 
-    <div>
-      <x-form.label for="date">Date of last contact:</x-form.label>
-      <x-form.input-date name="date" id="date" />
-    </div>
+    <x-form.input-date name="date" id="date" />
 
-    <div>
-      <x-form.label for="date_of_next_contact">Date of next contact:</x-form.label>
-      <x-form.input-date name="date_of_next_contact" id="date_of_next_contact" />
-    </div>
+    <x-form.input-date name="date_of_next_contact" id="date_of_next_contact" />
 
     <x-button type="submit">Add new comm</x-button>
 
