@@ -67,7 +67,7 @@
     <div>
       <label for="date" class="block text-sm font-medium text-gray-800">Date of last contact:</label>
       <div class="mt-1 relative">
-        <input type="date" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+        <input type="date" name="date" id="date" value="{{ old('date', date('Y-m-d')) }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
         @error('date')
         <div class="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
           <!-- Heroicon name: solid/exclamation-circle -->
@@ -85,7 +85,7 @@
     <div>
       <label for="date_of_next_contact" class="block text-sm font-medium text-gray-800">Date of next contact:</label>
       <div class="mt-1 relative">
-        <input type="date" value="{{ old('date', date('Y-m-d')) }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+        <input type="date" name="date_of_next_contact" id="date_of_next_contact" value="{{ old('date_of_next_contact', date('Y-m-d')) }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
         @error('date')
         <div class="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
           <!-- Heroicon name: solid/exclamation-circle -->
