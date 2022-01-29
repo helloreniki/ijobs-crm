@@ -22,7 +22,7 @@ class CommsController extends Controller
         // validation
         $attributes = request()->validate([
             'employee_id' => 'required|integer',
-            'content' => 'required|',
+            'content' => 'required',
             'date' => 'required|date|before_or_equal:today',
             'date_of_next_contact' => 'required|after_or_equal:today',
         ], [
@@ -35,5 +35,36 @@ class CommsController extends Controller
 
         // return redirect
         return redirect()->route('home')->with('success', 'Your comm was added successfully!');
+    }
+
+    public function edit(Comms $comm)
+    {
+        $employees = Employee::all();
+
+        return view('comm.edit', [
+            'comm' => $comm,
+            'employees' => $employees,
+        ]);
+    }
+
+    public function update(Comms $comm)
+    {
+        // validation
+       $attributes = request()->validate([
+            'employee_id' => 'required|integer',
+            'content' => 'required',
+            'date' => 'required|date|before_or_equal:today',
+            'date_of_next_contact' => 'required|after_or_equal:today',
+        ], [
+            'employee_id.integer' => 'Please choose your contact.'
+        ]);
+
+        // dd(request()->all());
+
+        // update
+        $comm->update(request()->all());
+
+        // return redirect
+        return redirect()->route('home')->with('success', 'Comm was updated successfully!');
     }
 }
