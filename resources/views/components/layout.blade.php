@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <title>Document</title>
+  <style>
+    [x-cloak] { display: none !important;}
+  </style>
+  <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
   <nav class="flex justify-between bg-gray-200 px-6 py-3">
