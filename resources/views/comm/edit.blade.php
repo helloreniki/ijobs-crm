@@ -12,7 +12,7 @@
               <option value="null">Choose your contact</option>
               <option value="add">Add new contact</option>
               @foreach ($employees as $contact)
-                <option value="{{ $contact->id }}" {{ $comm->employee->id == $contact->id ? 'selected' : '' }}>{{ $contact->name }}</option>
+                <option value="{{ $contact->id }}" {{ old('employee_id') ? (old('employee_id') == $contact->id ? 'selected' : '') : ($comm->employee->id == $contact->id ? 'selected' : '') }}>{{ $contact->name }}</option>
               @endforeach
             </select>
             @error('employee_id')
@@ -42,7 +42,7 @@
             class="block w-full pr-10 border-2 border-cyan-500 @error('name') border-red-300 text-red-900 placeholder-red-300 @enderror focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md"
             placeholder="Content of communication"
         >
-          {{ $comm->content }}
+          {{ old('content') ?? $comm->content }}
         </textarea>
         @error('content')
         <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -63,9 +63,10 @@
       <div class="mt-1">
         <select name="type" id="type" class="text-gray-500 block w-full rounded-md shadow-md sm:text-sm border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
           <option value="" class="">Choose type of comm</option>
-          <option value="phone" {{ $comm->type == 'phone' ? 'selected' : '' }}>Phone</option>
-          <option value="email" {{ $comm->type == 'email' ? 'selected' : '' }}>Email</option>
-          <option value="video_call" {{ $comm->type == 'video_call' ? 'selected' : '' }}>Video Call</option>
+          {{-- if old('type') exists => old('type') = phone ? selected : ''  else $comm->type = phone ...--}}
+          <option value="phone" {{ old('type') ? (old('type') == 'phone' ? 'selected' : '') : ($comm->type == 'phone' ? 'selected' : '') }}>Phone</option>
+          <option value="email" {{ old('type') ? (old('type') == 'email' ? 'selected' : '') : ($comm->type == 'email' ? 'selected' : '') }}>Email</option>
+          <option value="video_call" {{ old('type') ? (old('type') == 'video_call' ? 'selected' : '') : ($comm->type == 'video_call' ? 'selected' : '') }}>Video Call</option>
         </select>
       </div>
     </div>
@@ -73,7 +74,7 @@
     <div>
       <label for="date" class="block text-sm font-medium text-gray-800">Date of last contact:</label>
       <div class="mt-1 relative">
-        <input type="date" name="date" id="date" value="{{ $comm->date }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+        <input type="date" name="date" id="date" value="{{ old('date', date('Y-m-d')) ?? $comm->date }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
         @error('date')
         <div class="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
           <!-- Heroicon name: solid/exclamation-circle -->
@@ -91,7 +92,7 @@
     <div>
       <label for="date_of_next_contact" class="block text-sm font-medium text-gray-800">Date of next contact:</label>
       <div class="mt-1 relative">
-        <input type="date" name="date_of_next_contact" id="date_of_next_contact" value="{{ $comm->date_of_next_contact }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
+        <input type="date" name="date_of_next_contact" id="date_of_next_contact" value="{{ old('date_of_next_contact', date('Y-m-d')) ?? $comm->date_of_next_contact }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
         @error('date')
         <div class="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
           <!-- Heroicon name: solid/exclamation-circle -->
