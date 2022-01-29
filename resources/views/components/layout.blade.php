@@ -33,6 +33,26 @@
     <div class="w-full">
       {{ $slot }}
     </div>
+
+    {{-- success message --}}
+    @if (session()->has('success'))
+    <div x-data="{ show: true }"
+         x-init="setTimeout(() => show = false, 5000)"
+         x-show="show"
+         class="fixed flex shadow-md ring-1 shadow-cyan-500 text-cyan-700 py-2 px-4 rounded-lg top-16 right-3 text-sm"
+    >
+      <svg class="h-6 w-6 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p class="ml-3 text-sm text-cyan-500 flex-1">{{ session('success') }}</p>
+      <button class="ml-2">
+        <svg class="h-4 w-4 text-cyan-500 hover:text-cyan-700 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    @endif
+
   </div>
 </body>
 </html>
