@@ -4,101 +4,49 @@
   @csrf
 
     <div>
-      <label for="employee_id" class="block text-sm font-medium text-gray-800">Contact's name</label>
-      <div class="mt-1">
-        <div class="flex justify-between items-center gap-4">
-          <div class="relative w-full">
-            <select name="employee_id" id="employee_id" class="rounded-md shadow-sm block w-full text-gray-500 pr-10 border-2 border-cyan-500 @error('name') border-red-300 text-red-900 placeholder-red-300 @enderror focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md" placeholder="Name">
-              <option value="null">Choose your contact</option>
-              <option value="add">Add new contact</option>
-              @foreach ($employees as $contact)
-                <option value="{{ $contact->id }}" {{ old('employee_id') == $contact->id ? 'selected' : '' }}>{{ $contact->name }}</option>
-              @endforeach
-            </select>
-            @error('employee_id')
-            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              <!-- Heroicon name: solid/exclamation-circle -->
-              <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            @enderror
-          </div>
+      <x-form.label for="employee_id" class="tracking-widest">Contact name</x-form.label>
 
+      <x-form.select name="employee_id" id="employee_id" empty="Choose your contact">
+        @foreach ($employees as $contact)
+          <option value="{{ $contact->id }}" {{ old('employee_id') == $contact->id ? 'selected' : '' }}>{{ $contact->name }}</option>
+        @endforeach
+        <x-slot name="newForm">
           <div class="flex-shrink-0 text-sm text-white text-center bg-cyan-500 shadow-md shadow-cyan-500/50 rounded-md px-3 py-2">Add new contact</div>
+        </x-slot>
+      </x-form.select>
 
-        </div>
-      </div>
-      @error('employee_id')
-        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-      @enderror
+      <x-form.error-message name="employee_id" />
     </div>
 
     <div class="">
-      <label for="content" class="block text-sm font-medium text-gray-800">Content:</label>
+      <x-form.label for="content">Content:</x-form.label>
       <div class="mt-1 relative">
-        <textarea name="content" id="content" cols="30" rows="10" class="block w-full pr-10 border-2 border-cyan-500 @error('name') border-red-300 text-red-900 placeholder-red-300 @enderror focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md" placeholder="Content of communication">{{ old('content') }}</textarea>
-        @error('content')
-        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-          <!-- Heroicon name: solid/exclamation-circle -->
-          <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        @enderror
+        <x-form.textarea name="content" id="content" placeholder="Content of communication...">{{ old('content') }}</x-form.textarea>
+        <x-form.error-icon name="content"/>
       </div>
-      @error('content')
-        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-      @enderror
+      <x-form.error-message name="content"/>
     </div>
 
     <div>
-      <label for="type" class="block text-sm font-medium text-gray-800">Type of communication:</label>
-      <div class="mt-1">
-        <select name="type" id="type" class="text-gray-500 block w-full rounded-md shadow-md sm:text-sm border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
-          <option value="" class="">Choose type of comm</option>
-          <option value="phone" {{ old('type') == 'phone' ? 'selected' : '' }}>Phone</option>
-          <option value="email" {{ old('type') == 'email' ? 'selected' : '' }}>Email</option>
-          <option value="video_call" {{ old('type') == 'video_call' ? 'selected' : '' }}>Video Call</option>
-        </select>
-      </div>
+      <x-form.label for="type">Type of communication:</x-form.label>
+      <x-form.select name="type" id="type" empty="Choose type of comm">
+        <option value="phone" {{ old('type') == 'phone' ? 'selected' : '' }}>Phone</option>
+        <option value="email" {{ old('type') == 'email' ? 'selected' : '' }}>Email</option>
+        <option value="video_call" {{ old('type') == 'video_call' ? 'selected' : '' }}>Video Call</option>
+      </x-form.select>
     </div>
 
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-800">Date of last contact:</label>
-      <div class="mt-1 relative">
-        <input type="date" name="date" id="date" value="{{ old('date', date('Y-m-d')) }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
-        @error('date')
-        <div class="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
-          <!-- Heroicon name: solid/exclamation-circle -->
-          <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        @enderror
-      </div>
-      @error('date')
-        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-      @enderror
+      <x-form.label for="date">Date of last contact:</x-form.label>
+      <x-form.input-date name="date" id="date" />
     </div>
 
     <div>
-      <label for="date_of_next_contact" class="block text-sm font-medium text-gray-800">Date of next contact:</label>
-      <div class="mt-1 relative">
-        <input type="date" name="date_of_next_contact" id="date_of_next_contact" value="{{ old('date_of_next_contact', date('Y-m-d')) }}" class="block w-full text-gray-500 text-sm rounded-md shadow-md border-2 border-cyan-500 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500">
-        @error('date')
-        <div class="absolute inset-y-0 right-8 pr-3 flex items-center pointer-events-none">
-          <!-- Heroicon name: solid/exclamation-circle -->
-          <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-          </svg>
-        </div>
-        @enderror
-      </div>
-      @error('date_of_next_contact')
-        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-      @enderror
+      <x-form.label for="date_of_next_contact">Date of next contact:</x-form.label>
+      <x-form.input-date name="date_of_next_contact" id="date_of_next_contact" />
     </div>
-    <button type="submit" class="bg-cyan-500 shadow-md shadow-cyan-500/50 rounded-md px-3 py-2 text-white font-semibold">Add new comm</button>
+
+    <x-button type="submit">Add new comm</x-button>
+
   </form>
 </x-layout>
