@@ -25,6 +25,8 @@ Route::post('/comms', [CommsController::class, 'store'])->name('comm.store');
 Route::get('/comms/{comm}/edit', [CommsController::class, 'edit'])->name('comm.edit');
 Route::post('/comms/{comm}', [CommsController::class, 'update'])->name('comm.update');
 
+Route::delete('/comms/{comm}', [CommsController::class, 'destroy'])->name('comm.destroy');
+
 Route::get('/companies', [CompanyController::class, 'index'])->name('company.index');
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('company.show');
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');

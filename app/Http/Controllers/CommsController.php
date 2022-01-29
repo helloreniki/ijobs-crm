@@ -67,4 +67,11 @@ class CommsController extends Controller
         // return redirect
         return redirect()->route('home')->with('success', 'Comm was updated successfully!');
     }
+
+    public function destroy(Comms $comm)
+    {
+        $comm->delete();
+
+        return redirect()->route('home')->with('success', 'Comm deleted successfully!');
+    }
 }
