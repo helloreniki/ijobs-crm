@@ -6,7 +6,7 @@ use App\Models\Employee;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comms extends Model
+class Comm extends Model
 {
     use HasFactory;
 

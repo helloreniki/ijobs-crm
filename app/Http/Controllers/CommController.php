@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comms;
+use App\Models\Comm;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class CommsController extends Controller
+class CommController extends Controller
 {
     public function create()
     {
@@ -31,13 +31,13 @@ class CommsController extends Controller
 
         // create comm
 
-        Comms::create($attributes);
+        Comm::create($attributes);
 
         // return redirect
         return redirect()->route('home')->with('success', 'Your comm was added successfully!');
     }
 
-    public function edit(Comms $comm)
+    public function edit(Comm $comm)
     {
         $employees = Employee::all();
 
@@ -47,7 +47,7 @@ class CommsController extends Controller
         ]);
     }
 
-    public function update(Comms $comm)
+    public function update(Comm $comm)
     {
         // validation
        $attributes = request()->validate([
@@ -68,7 +68,7 @@ class CommsController extends Controller
         return redirect()->route('home')->with('success', 'Comm was updated successfully!');
     }
 
-    public function destroy(Comms $comm)
+    public function destroy(Comm $comm)
     {
         $comm->delete();
 

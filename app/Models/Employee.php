@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Comms;
+use App\Models\Comm;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +22,6 @@ class Employee extends Model
 
     public function comms()
     {
-        return $this->hasMany(Comms::class);
+        return $this->hasMany(Comm::class);
     }
 }
