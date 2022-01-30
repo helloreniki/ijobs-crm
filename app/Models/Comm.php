@@ -22,4 +22,11 @@ class Comm extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        if (request('q')) {
+            $query->where('content', 'like', '%' . $searchTerm . '%');
+        }
+    }
 }

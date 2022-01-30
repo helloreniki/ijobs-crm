@@ -7,10 +7,26 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        //show all latest comms
-        $comms = Comm::with('employee', 'employee.company')->latest('date')->simplePaginate(15)->withQueryString();
+
+        // $comms = Comm::query()
+        //     ->with('employee', 'employee.company')
+        //     ->latest('date')
+        //     ->when(request('q'), function($query, $search) {
+        //         $query->where('content', 'like', "%{$search}%");
+        //     })
+        //     ->simplePaginate(3)
+        //     ->withQueryString();
+
+        // with scope
+
+        $comms = Comm::with('employee', 'employee.company')
+            ->latest('date')
+            ->search(request('q')) // 1st search = name of the scope, request('name of the input')
+            ->simplePaginate(4)
+            ->withQueryString(); //append all of the current request's query string values to the pagination links
+
 
         return view('home', [
             'comms' => $comms,

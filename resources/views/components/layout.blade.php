@@ -12,13 +12,27 @@
   <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
-  <nav class="flex justify-between bg-gray-200 px-6 py-3">
-    <div class="flex space-x-6">
+<body x-data="{}" @keyup.cmd="$refs.searchfield.focus()">
+  <nav class="flex justify-between items-center bg-gray-200 px-6 py-3">
+    <div class="flex items-center space-x-6">
       <a href="{{ route('home') }}"><div>Logo</div></a>
-      <a href="{{ route('home') }}"><div>Jobs CRM</div></a>
+      <a href="{{ route('home') }}" class="flex-shrink-0"><div>Jobs CRM</div></a>
       <div>Filters</div>
-      <div>Search</div>
+      <form action="{{ route('home') }}" method="get" class="relative flex items-center flex-shrink-0 w-full">
+
+          <input type="text" name="q" id="name" placeholder="Search through comms..."
+              class="rounded-md shadow-sm border-2 border-cyan-600 placeholder-gray-400
+              focus:ring-cyan-500 focus:border-cyan-600 text-sm text-cyan-500 px-2 w-full flex-shrink-0"
+              value="{{ request('q') }}" required
+              x-ref="searchfield"
+          />
+          <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+            <kbd class="inline-flex items-center border border-gray-400 rounded px-2 text-sm font-sans font-medium text-gray-400">
+              ⌘
+            </kbd>
+          </div>
+
+      </form>
     </div>
     <div>
       My Profile
