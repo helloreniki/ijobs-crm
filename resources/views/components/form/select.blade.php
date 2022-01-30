@@ -1,5 +1,6 @@
-@props(['name', 'id', 'empty', 'newForm'])
+@props(['name', 'id', 'empty', 'newForm', 'labelName'])
 
+<label for="{{ $id }}" class="block text-sm font-medium text-gray-800">{{ $labelName }}</label>
 <div class="mt-1">
   <div class="flex justify-between items-center gap-4">
     <div class="relative w-full">

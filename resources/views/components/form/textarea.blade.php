@@ -1,6 +1,6 @@
 @props(['name', 'id', 'placeholder'])
 
-<x-form.label for="{{ $name }}">{{ ucfirst($name . ':') }}</x-form.label>
+<x-form.label for="{{ $id }}">{{ ucfirst($name . ':') }}</x-form.label>
 
 <div class="mt-1 relative">
   <textarea
