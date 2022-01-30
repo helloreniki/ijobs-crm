@@ -6,7 +6,7 @@ use App\Models\Employee;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CommsFactory extends Factory
+class CommFactory extends Factory
 {
     /**
      * Define the model's default state.

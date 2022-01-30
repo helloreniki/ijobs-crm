@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Comms;
+use App\Models\Comm;
 use App\Models\Skill;
 use App\Models\Company;
 use App\Models\Employee;
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
           }
         }
 
-        $comms = Comms::factory(50)->create();
+        $comms = Comm::factory(50)->create();
 
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CommsController;
+use App\Http\Controllers\CommController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 
@@ -19,13 +19,13 @@ use App\Http\Controllers\EmployeeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/comms/create', [CommsController::class, 'create'])->name('comm.create');
-Route::post('/comms', [CommsController::class, 'store'])->name('comm.store');
+Route::get('/comms/create', [CommController::class, 'create'])->name('comm.create');
+Route::post('/comms', [CommController::class, 'store'])->name('comm.store');
 
-Route::get('/comms/{comm}/edit', [CommsController::class, 'edit'])->name('comm.edit');
-Route::post('/comms/{comm}', [CommsController::class, 'update'])->name('comm.update');
+Route::get('/comms/{comm}/edit', [CommController::class, 'edit'])->name('comm.edit');
+Route::post('/comms/{comm}', [CommController::class, 'update'])->name('comm.update');
 
-Route::delete('/comms/{comm}', [CommsController::class, 'destroy'])->name('comm.destroy');
+Route::delete('/comms/{comm}', [CommController::class, 'destroy'])->name('comm.destroy');
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('company.index');
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('company.show');
