@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('address')->nullable();
             $table->string('country');
             $table->string('website')->nullable();
-            $table->boolean('contacted');
+            $table->boolean('contacted')->default(0);
             $table->integer('my_rating')->nullable(); // 1-5
             $table->text('notes')->nullable();
             $table->timestamps();

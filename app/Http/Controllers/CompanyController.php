@@ -22,4 +22,28 @@ class CompanyController extends Controller
             'company' => $company
         ]);
     }
+
+    public function create()
+    {
+        return view('company.create');
+    }
+
+    public function store()
+    {
+        // validation
+        $attributes = request()->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'address' => '',
+            'country' => 'required',
+            'website' => '',
+            'contacted' => 'nullable|boolean',
+            'my_rating' => 'integer|between:1,5',
+            'notes' => 'nullable|string|max:250',
+        ]);
+
+        Company::create($attributes);
+
+        return redirect()->route('company.index')->with('success', 'Company created successfully!');
+    }
 }

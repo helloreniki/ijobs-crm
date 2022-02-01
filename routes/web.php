@@ -28,6 +28,10 @@ Route::post('/comms/{comm}', [CommController::class, 'update'])->name('comm.upda
 Route::delete('/comms/{comm}', [CommController::class, 'destroy'])->name('comm.destroy');
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('company.index');
+Route::get('/companies/create', [CompanyController::class, 'create'])->name('company.create');
+Route::post('/companies', [CompanyController::class, 'store'])->name('company.store');
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('company.show');
+
+
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employees/{employee}/comms', [EmployeeController::class, 'show'])->name('employee.show');

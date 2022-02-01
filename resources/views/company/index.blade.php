@@ -1,6 +1,6 @@
 <x-layout>
   <div class="uppercase font-semibold mb-12">List of Companies</div>
-  <div class="font-bold text-cyan-700 py-1 mb-6">Add new company</div>
+  <div class="font-bold text-cyan-700 py-1 mb-6"><a href="{{ route('company.create') }}">Add new company</a></div>
   <table class="text-sm relative">
     <thead class="">
       <tr class="uppercase text-left">
