@@ -30,6 +30,8 @@ Route::delete('/comms/{comm}', [CommController::class, 'destroy'])->name('comm.d
 Route::get('/companies', [CompanyController::class, 'index'])->name('company.index');
 Route::get('/companies/create', [CompanyController::class, 'create'])->name('company.create');
 Route::post('/companies', [CompanyController::class, 'store'])->name('company.store');
+Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
+Route::post('/companies/{company}', [CompanyController::class, 'update'])->name('company.update');
 Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('company.show');
 
 

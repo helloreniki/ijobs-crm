@@ -11,6 +11,7 @@
         <th class="p-2">Rating</th>
         <th class="p-2">Notes</th>
         <th class="p-2">Skills</th>
+        <th class="p-2"></th>
       </tr>
     </thead>
     <tbody class="py-3 divide-y">
@@ -26,12 +27,15 @@
         <td class="py-1 px-2 text-center">{{ $company->contacted ? 'YES' : 'NO' }}</td>
         <td class="py-1 px-2 text-center">{{ $company->my_rating }}</td>
         <td class="py-1 px-2">{{ $company->notes }}</td>
-        <td class="py-1 px-2 text-cyan-700">
-          <div class="flex space-x-1">
+        <td class="py-1 px-2 text-cyan-700 flex space-x-1 items-center  ">
+
           @foreach ($company->skills as $skill)
-            <div class="mb-8">{{ $skill->name }}</div>
+            <div class="">{{ $skill->name }}</div>
           @endforeach
-          </div>
+
+        </td>
+        <td class="py-1 px-2">
+          <a href="{{ route('company.edit', $company) }}">Edit</a>
         </td>
 
       </tr>

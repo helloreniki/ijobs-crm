@@ -46,4 +46,30 @@ class CompanyController extends Controller
 
         return redirect()->route('company.index')->with('success', 'Company created successfully!');
     }
+
+    public function edit(Company $company)
+    {
+        return view('company.edit', [
+            'company' => $company,
+        ]);
+    }
+
+    public function update(Company $company)
+    {
+        // validation
+        $attributes = request()->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'address' => '',
+            'country' => 'required',
+            'website' => '',
+            'contacted' => 'nullable|boolean',
+            'my_rating' => 'integer|between:1,5',
+            'notes' => 'nullable|string|max:250',
+        ]);
+
+        $company->update(request()->all());
+
+        return redirect()->route('company.index')->with('success', 'Company updated!');
+    }
 }
