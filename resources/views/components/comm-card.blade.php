@@ -19,6 +19,7 @@
         modalDescription="Are you sure you want to delete this communication with <span class='text-red-600'>{{ $comm->employee->name }}</span> that took place on <span class='text-red-600'>{{ $comm->date }}</span>?"
         routeName="comm.destroy"
         :routeParam="$comm"
+        routeParamId="{{ $comm->id }}"
      />
   </div>
 </div>
