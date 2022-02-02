@@ -12,7 +12,7 @@ class Company extends Model
     use HasFactory;
 
     protected $fillable = [
-       'name', 'email', 'address', 'country', 'website', 'my_rating', 'notes'
+       'name', 'email', 'address', 'country', 'website', 'contacted', 'my_rating', 'notes'
     ];
 
     public function employees()
