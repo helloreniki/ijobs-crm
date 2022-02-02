@@ -33,10 +33,12 @@
           <td class="py-1 px-2 text-center">{{ $company->contacted ? 'YES' : 'NO' }}</td>
           <td class="py-1 px-2 text-center">{{ $company->my_rating }}</td>
           <td class="py-1 px-2">{{ $company->notes }}</td>
-          <td class="py-1 px-2 text-cyan-700 flex space-x-1 items-center  ">
-            @foreach ($company->skills as $skill)
-              <div class="">{{ $skill->name }}</div>
-            @endforeach
+          <td class="py-1 px-2 text-cyan-700">
+            <div class="flex gap-1 flex-wrap items-center">
+              @foreach ($company->skills as $skill)
+                <div class="">{{ $skill->name }}</div>
+              @endforeach
+            </div>
           </td>
           <td class="py-1 px-2">
             <a href="{{ route('company.edit', $company) }}">Edit</a>

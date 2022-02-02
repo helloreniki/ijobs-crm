@@ -25,6 +25,28 @@
 
       <x-form.textarea name="notes" id="notes" placeholder="Write what feels important...">{{ old('notes') }}</x-form.textarea>
 
+      {{-- CHECKBOXES --}}
+      <div>
+        <x-form.label for="skills">Choose skills required</x-form>
+          <div class="grid grid-cols-4 gap-6 items-center mt-2">
+            @foreach ($skills as $skill)
+            <div class="text-sm">
+              <input type="checkbox" name="skill_ids[]" id="skills" value={{ $skill->id }} class="mr-2 text-cyan-500">{{ $skill->name }}
+            </div>
+            @endforeach
+          </div>
+      </div>
+
+
+      {{-- MULTI SELECT --}}
+      {{-- <x-form.select name="skills[]" id="skills" empty="Choose Skills" labelName="Skills Required" multiple> --}}
+        {{-- <select name="skills[]" id="skills" multiple>
+        @foreach ($skills as $skill)
+            <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+        @endforeach
+        </select> --}}
+      {{-- </x-form.select> --}}
+
       <x-button type="submit">Create new company</x-button>
 
   </form>

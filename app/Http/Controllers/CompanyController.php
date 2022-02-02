@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skill;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -25,12 +26,13 @@ class CompanyController extends Controller
 
     public function create()
     {
-        return view('company.create');
+        return view('company.create', [
+            'skills' => Skill::all(),
+        ]);
     }
 
     public function store()
     {
-        // validation
         $attributes = request()->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
@@ -40,9 +42,22 @@ class CompanyController extends Controller
             'contacted' => 'nullable|boolean',
             'my_rating' => 'integer|between:1,5',
             'notes' => 'nullable|string|max:250',
+            'skill_ids' => 'required' // array of ids input name="skill_ids[]"
         ]);
 
-        Company::create($attributes);
+        $company = Company::create($attributes);
+
+        $skill_ids = request('skill_ids');
+
+        // attach each skill_id manually
+        // foreach ($skill_ids as $skill_id) {
+        //     $company->skills()->attach($skill_id);
+        // }
+
+        // attach whole array of skill_ids at once
+        $company->skills()->attach($skill_ids);
+
+        $company->save();
 
         return redirect()->route('company.index')->with('success', 'Company created successfully!');
     }
