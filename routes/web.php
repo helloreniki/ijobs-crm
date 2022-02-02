@@ -37,5 +37,7 @@ Route::get('/companies/{company}', [CompanyController::class, 'show'])->name('co
 
 
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::post('/employees/store', [EmployeeController::class, 'store'])->name('employee.store');
 Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 Route::get('/employees/{employee}/comms', [EmployeeController::class, 'show'])->name('employee.show');

@@ -5,7 +5,7 @@
     @endforeach
   }">
     <div class="uppercase font-semibold mb-12">List of Contacts</div>
-    <div class="font-bold text-cyan-700 py-1 mb-6">Add new contact</div>
+    <a href="{{ route('employee.create') }}" class="font-bold text-cyan-700 py-1 mb-6">Add new contact</a>
     <table class="table-fixed text-sm">
       <thead>
         <tr class="uppercase text-left">
