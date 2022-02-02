@@ -64,8 +64,15 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
+        $company_skills = [];
+        foreach($company->skills()->get() as $s) {
+            $company_skills[] = $s->pivot->skill_id;
+        }
+
         return view('company.edit', [
             'company' => $company,
+            'company_skills' => $company_skills,
+            'skills' => Skill::all(),
         ]);
     }
 
@@ -81,9 +88,19 @@ class CompanyController extends Controller
             'contacted' => 'nullable|boolean',
             'my_rating' => 'integer|between:1,5',
             'notes' => 'nullable|string|max:250',
+
         ]);
 
         $company->update(request()->all());
+
+        $skill_ids = request('skill_ids');
+
+        // $company->skills()->detach();
+        // $company->skills()->attach();
+        $company->skills()->sync($skill_ids);
+        // $company->skills()->updateExistingPivot($skill_ids);
+
+        $company->save();
 
         return redirect()->route('company.index')->with('success', 'Company updated!');
     }

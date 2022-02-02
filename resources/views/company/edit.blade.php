@@ -12,7 +12,7 @@
       <div>
         <x-form.label for="contacted">Did you contact the company already?</x-form.label>
         <input type="checkbox" name="contacted" id="contacted"
-            value={{ 'checked' ? 1 : 0 }}
+            value="1"
             {{ old('contacted') ? (old('contacted') == 1 ? 'checked' : '' ) : ($company->contacted == 1 ? 'checked' : '') }} class="text-cyan-500 ml-2" />
       </div>
 
@@ -21,13 +21,25 @@
         <div class="flex space-x-3 items-center mt-2">
           @for ($i = 1; $i < 6; $i++)
             <input type="radio" class="text-cyan-500" name="my_rating"
-              value={{ 'checked' ? $i : null }}
+              value="{{ $i }}"
               {{ old('my_rating') ? ( old('my_rating') == $i ? 'checked' : '') : ($company->my_rating == $i ? 'checked' : '') }}><span>{{ $i }}</span>
           @endfor
         </div>
       </div>
 
-      <x-form.textarea name="notes" id="notes" placeholder="Write what feels important...">{{ old('notes') }}</x-form.textarea>
+      <x-form.textarea name="notes" id="notes" placeholder="Write what feels important...">{{ old('notes', $company->notes) }}</x-form.textarea>
+
+      {{-- CHECKBOXES --}}
+      <div>
+        <x-form.label for="skills">Choose skills required</x-form>
+          <div class="grid grid-cols-4 gap-6 items-center mt-2">
+            @foreach ($skills as $skill)
+            <div class="text-sm">
+              <input type="checkbox" name="skill_ids[]" id="skills" value={{ $skill->id }} {{ in_array($skill->id, $company_skills) ? 'checked' : '' }} class="mr-2 text-cyan-500">{{ $skill->name }}
+            </div>
+            @endforeach
+          </div>
+      </div>
 
       <x-button type="submit">Update new company</x-button>
 
