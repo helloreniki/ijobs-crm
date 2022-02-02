@@ -22,4 +22,11 @@ class EmployeeController extends Controller
             'employee' => $employee,
         ]);
     }
+
+    public function destroy(Employee $employee)
+    {
+        $employee->delete();
+
+        return redirect()->route('employee.index')->with('success', 'Contact was deleted!');
+    }
 }
