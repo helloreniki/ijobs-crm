@@ -51,6 +51,33 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index')->with('success', 'Contact created!');
     }
 
+    public function edit(Employee $employee)
+    {
+        $companies = Company::select('id', 'name')->get();
+
+        return view('employee.edit', [
+            'companies' => $companies,
+            'employee' => $employee,
+        ]);
+    }
+
+    public function update(Employee $employee)
+    {
+        $attributes = request()->validate([
+            'company_id' => 'required|exists:companies,id',
+            'name' => 'required|string|max:25',
+            'email' => 'required|email',
+            'notes' => 'nullable|string|max:300',
+        ], [
+            'company_id.exists' => 'Please choose company.'
+            ]
+        );
+
+        $employee->update();
+
+        return redirect()->route('employee.index')->with('success', 'Employee updated!');
+    }
+
     public function destroy(Employee $employee)
     {
         $employee->delete();

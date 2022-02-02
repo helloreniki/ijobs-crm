@@ -29,6 +29,7 @@
           <td class="py-1 px-2">{{ $employee->company->country }}</td>
           <td class="py-1 px-2">{{ $employee->notes }}</td>
           <td class="py-1 px-2">
+            <a href="{{ route('employee.edit', $employee) }}">Edit</a>
             <button @click="showConfirmModal{{ $employee->id }} = true">Delete</button>
           </td>
         </tr>
