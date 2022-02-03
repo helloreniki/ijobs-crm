@@ -17,13 +17,48 @@
     </div>
     <div class="font-bold text-cyan-700 py-1 my-6"><a href="{{ route('company.create') }}">Add new company</a></div>
     <table class="text-sm relative">
+      <?php
+            $sortDirectionName = request('sortByName');
+            if ($sortDirectionName) {
+              // if param exists in url swap between asc and desc on second click
+              $sortDirectionName === 'asc' ? $sortDirectionName = 'desc' : $sortDirectionName = 'asc';
+            } else {
+              // if param doesn't exist, make it asc initially
+              $sortDirectionName = 'asc';
+            }
+          ?>
       <thead class="">
         <tr class="uppercase text-left">
-          <th class="p-2">Name</th>
+          <th class="p-2"><a href=/companies/?sortByName={{ $sortDirectionName }}>Name</a></th>
           <th class="p-2">Email</th>
           <th class="p-2">Country</th>
           <th class="p-2">Contacted</th>
-          <th class="p-2">Rating</th>
+          <?php
+          $sortDirection = request('sortByName');
+          if ($sortDirection) {
+            // if param exists in url swap between asc and desc on second click
+            $sortDirection === 'asc' ? $sortDirection = 'desc' : $sortDirection = 'asc';
+          } else {
+            // if param doesn't exist, make it asc initially
+            $sortDirection = 'asc';
+          }
+        ?>
+          <th class="p-2 flex space-x-3 items-center">
+            <a href="/companies/?sortByRating={{ $sortDirection ?? '' }}">Rating</a>
+            @if(request('sortByRating'))
+              @if($sortDirection === 'asc')
+                {{-- arrow down --}}
+                  <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+              @else
+                {{-- arrow up --}}
+                <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                </svg>
+              @endif
+            @endif
+          </th>
           <th class="p-2">Notes</th>
           <th class="p-2">Skills</th>
           <th class="p-2"></th>

@@ -30,6 +30,19 @@ class Company extends Model
         $query->when($filters['company_name'] ?? false, fn($query, $searchTearm) =>
             $query->where('name', 'like', '%' . $searchTearm . '%')
         );
+
+
+        $sortDirection = request('sortByRating'); // asc / desc
+
+        // if($sortAsc){ $direction = 'true'; } else { $sortDirection = 'desc'; }
+
+        $query->when($filters['sortByRating'] ?? false, fn($query, $sortDirection) =>
+            $query->orderBy('my_rating', $sortDirection)
+        );
+
+        $query->when($filters['sortByName'] ?? false, fn($query, $sortDirectionName) =>
+            $query->orderBy('name', $sortDirectionName)
+        );
     }
 
 }

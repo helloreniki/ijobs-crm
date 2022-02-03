@@ -11,10 +11,9 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::with('employees', 'skills')
-                ->orderBy('name')
-                ->filter(request(['company_name']))
+                // ->orderBy('name') // by default, but if filter sortByRating apply that?
+                ->filter(request(['company_name', 'sortByRating', 'sortByName']))
                 ->get();
-
 
         return view('company.index', [
             'companies' => $companies,
