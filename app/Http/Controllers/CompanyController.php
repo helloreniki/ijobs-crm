@@ -10,7 +10,11 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $companies = Company::with('employees', 'skills')->orderBy('name')->get();
+        $companies = Company::with('employees', 'skills')
+                ->orderBy('name')
+                ->filter(request(['company_name']))
+                ->get();
+
 
         return view('company.index', [
             'companies' => $companies,

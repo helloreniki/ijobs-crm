@@ -25,4 +25,11 @@ class Company extends Model
         return $this->belongsToMany(Skill::class);
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['company_name'] ?? false, fn($query, $searchTearm) =>
+            $query->where('name', 'like', '%' . $searchTearm . '%')
+        );
+    }
+
 }

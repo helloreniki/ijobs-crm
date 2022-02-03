@@ -6,7 +6,16 @@
       @endforeach
     }">
     <div class="uppercase font-semibold mb-12">List of Companies</div>
-    <div class="font-bold text-cyan-700 py-1 mb-6"><a href="{{ route('company.create') }}">Add new company</a></div>
+    <div class="flex space-x-3 items-center">
+      <x-form.label for="company_name">Search by company name:</x-form.label>
+      <form action="{{ route('company.index') }}" method="get">
+        <input type="text" name="company_name" value="{{ request('company_name')}}" placeholder="Search companies..."
+              class="rounded-md shadow-sm border-2 border-cyan-600 placeholder-gray-400
+                    focus:ring-cyan-500 focus:border-cyan-600 text-sm text-cyan-500 px-2 flex-1"
+        >
+      </form>
+    </div>
+    <div class="font-bold text-cyan-700 py-1 my-6"><a href="{{ route('company.create') }}">Add new company</a></div>
     <table class="text-sm relative">
       <thead class="">
         <tr class="uppercase text-left">
