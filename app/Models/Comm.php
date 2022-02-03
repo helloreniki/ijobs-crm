@@ -23,10 +23,19 @@ class Comm extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public function scopeSearch($query, $searchTerm)
+    public function scopeFilter($query, array $filters)
     {
-        if (request('q')) {
-            $query->where('content', 'like', '%' . $searchTerm . '%');
+        if ($filters['q'] ?? false) {
+            $query->where('content', 'like', '%' . request('q') . '%');
         }
+
+        // only comms with top rating companies, rating > 4
+
+        $query->when($filters['topRatingCompany'] ?? false, fn($query) =>
+            $query->whereHas('employee.company', fn($query) =>
+                $query->where('my_rating', '>', '4')
+            )
+        );
+
     }
 }
