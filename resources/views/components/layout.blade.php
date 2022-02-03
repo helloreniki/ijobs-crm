@@ -20,17 +20,21 @@
       <div>Filters</div>
       <form action="{{ route('home') }}" method="get" class="relative flex items-center flex-shrink-0 w-full">
 
-          <input type="text" name="q" id="name" placeholder="Search through comms..."
-              class="rounded-md shadow-sm border-2 border-cyan-600 placeholder-gray-400
-              focus:ring-cyan-500 focus:border-cyan-600 text-sm text-cyan-500 px-2 w-full flex-shrink-0"
-              value="{{ request('q') }}" required
-              x-ref="searchfield"
-          />
-          <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-            <kbd class="inline-flex items-center border border-gray-400 rounded px-2 text-sm font-sans font-medium text-gray-400">
-              ⌘
-            </kbd>
-          </div>
+        @if(request('topRatingCompany'))
+          <input type="hidden" name="topRatingCompany" value="{{ request('topRatingCompany') }}">
+        @endif
+
+        <input type="text" name="q" id="name" placeholder="Search through comms..."
+            class="rounded-md shadow-sm border-2 border-cyan-600 placeholder-gray-400
+            focus:ring-cyan-500 focus:border-cyan-600 text-sm text-cyan-500 px-2 w-full flex-shrink-0"
+            value="{{ request('q') }}" required
+            x-ref="searchfield"
+        />
+        <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+          <kbd class="inline-flex items-center border border-gray-400 rounded px-2 text-sm font-sans font-medium text-gray-400">
+            ⌘
+          </kbd>
+        </div>
 
       </form>
     </div>
