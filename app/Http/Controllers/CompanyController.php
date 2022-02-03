@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Skill;
 use App\Models\Company;
+use Squire\Models\Country;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -29,8 +30,10 @@ class CompanyController extends Controller
 
     public function create()
     {
+        $countries = Country::select('id', 'name')->get();
         return view('company.create', [
             'skills' => Skill::all(),
+            'countries' => $countries,
         ]);
     }
 

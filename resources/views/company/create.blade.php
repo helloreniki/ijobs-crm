@@ -6,7 +6,14 @@
       <x-form.input type="text" name="name" id="name" labelName="Name of the company" />
       <x-form.input type="text" name="address" id="address" labelName="Address of the company" />
       <x-form.input type="email" name="email" id="email" labelName="Email address" />
-      <x-form.input type="text" name="country" id="country" labelName="Country" />
+      {{-- <x-form.input type="text" name="country" id="country" labelName="Country" /> --}}
+
+      <x-form.select name="country" id="country" labelName="Country" empty="Choose country">
+        @foreach ($countries as $country)
+            <option value="{{ $country->name }}">{{ $country->name }}</option>
+        @endforeach
+      </x-form.select>
+
       <x-form.input type="text" name="website" id="website" labelName="Website" />
 
       <div>
