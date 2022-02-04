@@ -96,30 +96,28 @@
           </td>
         </tr>
 
-          <tr>
-            {{-- <td> --}}
-              {{-- <table class="table-auto text-sm m-6 "> --}}
-                <thead class="">
-                  <tr class="uppercase text-left text-sm">
-                    <th x-show="showEmployees{{$company->id}}" x-cloak class="pl-6 pt-2">Name</th>
-                    <th x-show="showEmployees{{$company->id}}" x-cloak class="pt-2 px-2">Email</th>
-                  </tr>
-                </thead>
-                <tbody class="py-3">
-                  @foreach ($company->employees as $employee)
-
-                  <tr class="text-xs @if($loop->last) border-b @endif">
-                    <td  x-show="showEmployees{{$company->id}}" x-cloak class="py-1 pl-6 whitespace-nowrap ">
-                      <a href="{{ route('employee.show', $employee) }}" class="font-semibold">{{ $employee->name }}</a>
-                    </td>
-                    <td x-show="showEmployees{{$company->id}}" x-cloak class="text-cyan-500 py-1 px-2 " style="vertical-align: middle">{{ $employee->email }}</td>
-                  </tr>
-
-                  @endforeach
-                </tbody>
-              {{-- </table> --}}
-            {{-- </td> --}}
-          </tr>
+        <tr class="bg-gray-50 border-b" x-show="showEmployees{{$company->id}}" x-cloak>
+          <td colspan="8">
+            <table class="table-auto text-sm my-5">
+              <thead class="">
+                <tr class="uppercase text-left text-sm">
+                  <th class="pl-6 pt-2">Name</th>
+                  <th class="pt-2 px-2">Email</th>
+                </tr>
+              </thead>
+              <tbody class="py-3">
+                @foreach ($company->employees as $employee)
+                <tr class="text-xs">
+                  <td class="py-1 pl-6 whitespace-nowrap ">
+                    <a href="{{ route('employee.show', $employee) }}" class="font-semibold">{{ $employee->name }}</a>
+                  </td>
+                  <td class="text-cyan-500 py-1 px-2 " style="vertical-align: middle">{{ $employee->email }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </td>
+        </tr>
 
         @endforeach
       </tbody>
