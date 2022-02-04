@@ -11,6 +11,10 @@
   </style>
   <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  {{-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css"> --}}
+  {{-- copy to app.css, so i can adjust it --}}
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
 </head>
 <body x-data="{}" @keyup.cmd="$refs.searchfield.focus()">
   <nav class="flex justify-between items-center bg-gray-200 px-6 py-3">
