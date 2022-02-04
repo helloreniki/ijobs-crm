@@ -3,6 +3,7 @@
     {
       @foreach($companies as $company)
       showConfirmModal{{ $company->id }}: false,
+      showEmployees{{ $company->id }}: false,
       @endforeach
     }">
     <div class="uppercase font-semibold mb-12">List of Companies</div>
@@ -64,13 +65,18 @@
           <th class="p-2"></th>
         </tr>
       </thead>
-      <tbody class="py-3 divide-y">
+      <tbody class="py-3">
         @foreach ($companies as $company)
-        <tr class="text-xs">
-          <td class="py-1 px-2">
+        <tr class="text-xs border-b">
+          <td class="py-2 px-2">
             <div class="font-semibold"><a href="{{ route('company.show', $company) }}">{{ $company->name }}</a></div>
-            <div class="text-xxs text-gray-500">{{ $company->address }}</div>
-            <div class="text-xxs text-cyan-500">{{ $company->website }}</div>
+            <div class="text-xxs text-gray-500" >{{ $company->address }}</div>
+            <div class="flex justify-between items-center">
+              <div class="text-xxs text-cyan-500">{{ $company->website }}</div>
+              <svg @click="showEmployees{{ $company->id }} = ! showEmployees{{ $company->id }}" class="h-4 w-4 text-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+              </svg>
+            </div>
           </td>
           <td class="py-1 px-2">{{ $company->email }}</td>
           <td class="py-1 px-2">{{ $company->country }}</td>
@@ -89,9 +95,36 @@
             <button @click="showConfirmModal{{ $company->id }} = true">Delete</button>
           </td>
         </tr>
+
+          <tr>
+            {{-- <td> --}}
+              {{-- <table class="table-auto text-sm m-6 "> --}}
+                <thead class="">
+                  <tr class="uppercase text-left text-sm">
+                    <th x-show="showEmployees{{$company->id}}" class="pl-6 pt-2">Name</th>
+                    <th x-show="showEmployees{{$company->id}}" class="pt-2 px-2">Email</th>
+                  </tr>
+                </thead>
+                <tbody class="py-3">
+                  @foreach ($company->employees as $employee)
+
+                  <tr class="text-xs @if($loop->last) border-b @endif">
+                    <td  x-show="showEmployees{{$company->id}}" class="py-1 pl-6 whitespace-nowrap ">
+                      <a href="{{ route('employee.show', $employee) }}" class="font-semibold">{{ $employee->name }}</a>
+                    </td>
+                    <td x-show="showEmployees{{$company->id}}" class="text-cyan-500 py-1 px-2 " style="vertical-align: middle">{{ $employee->email }}</td>
+                  </tr>
+
+                  @endforeach
+                </tbody>
+              {{-- </table> --}}
+            {{-- </td> --}}
+          </tr>
+
         @endforeach
       </tbody>
     </table>
+
     @foreach ($companies as $company)
     <div x-show="showConfirmModal{{ $company->id }}" x-cloak>
       <x-confirm-modal
